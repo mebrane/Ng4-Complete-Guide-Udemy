@@ -21,14 +21,15 @@ export class ShoppingListComponent implements OnInit {
         'Orange',
         30,
     ),
-    new Ingredient(
-        'Lettuce',
-        40,
-    ),
-    new Ingredient(
-        'Banana',
-        Math.floor(Math.random()*100),
-    ),
+      //
+    // new Ingredient(
+    //     'Lettuce',
+    //     40,
+    // ),
+    // new Ingredient(
+    //     'Banana',
+    //     Math.floor(Math.random()*100),
+    // ),
   ];
 
 
@@ -39,5 +40,11 @@ export class ShoppingListComponent implements OnInit {
         () => .5 - Math.random()
     );
   }
+
+  onIngredientAdded(ingredient: Ingredient){
+    console.log(ingredient);
+    this.ingredients.push(ingredient);
+  }
+
 
 }

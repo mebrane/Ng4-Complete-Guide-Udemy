@@ -1,0 +1,19 @@
+
+
+
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onModalHide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ul *ngIf="list">
+    <li *ngFor="let item of list">{{item}}</li>
+  </ul>
+  <input type="text" class="form-control" #inputElement>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="onModalAction(inputElement)">Action</button>
+  <button type="button" class="btn btn-default" (click)="onModalHide()">Close</button>
+</div>

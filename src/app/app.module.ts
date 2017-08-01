@@ -9,10 +9,13 @@ import {RecipesModule} from "./recipes/recipes.module";
 import {RootComponent} from './root/root.component';
 import {ShoppingListModule} from "./shopping-list/shopping-list.module";
 import {SharedModule} from "./shared/shared.module";
+import { ProjectComponent } from './root/project/project.component';
 
 @NgModule({
     declarations: [
         RootComponent,
+        ProjectComponent,
+        // ComponentModalComponentComponent
     ],
     imports: [
         BrowserModule,

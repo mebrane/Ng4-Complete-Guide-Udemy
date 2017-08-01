@@ -1,0 +1,9 @@
+<button type="button" class="btn btn-primary" (click)="staticModal.show()">Static modal</button>
+
+<div  class="modal fade" bsModal #staticModal="bs-modal" [config]="modalData.config"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <app-modal-dir-opt
+              [modalRef]="staticModal"
+              [content]="modalData.content"
+      ></app-modal-dir-opt>
+</div>
