@@ -10,6 +10,7 @@ import {RootComponent} from './root/root.component';
 import {ShoppingListModule} from "./shopping-list/shopping-list.module";
 import {SharedModule} from "./shared/shared.module";
 import { ProjectComponent } from './root/project/project.component';
+import {ShoppingListService} from "./shopping-list/shopping-list.service";
 
 @NgModule({
     declarations: [
@@ -26,7 +27,7 @@ import { ProjectComponent } from './root/project/project.component';
         RecipesModule,
         ShoppingListModule
     ],
-    providers: [],
+    providers: [ ShoppingListService],
     bootstrap: [RootComponent]
 })
 export class AppModule {

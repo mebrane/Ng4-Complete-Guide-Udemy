@@ -1,33 +1,30 @@
-import {Component, OnInit, Input, AfterViewInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Recipe} from "../recipe.model";
+import {RecipeService} from "../recipe.service";
+import {ShoppingListService} from "../../shopping-list/shopping-list.service";
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit, AfterViewInit ,OnDestroy{
-  initialized:boolean=false;
-  destroying=false;
-  classes={
-    'fadeInLeft':this.initialized,//
-    'fadeOutRight':this.destroying
-  }
-  @Input() recipe:Recipe;
-  constructor() { }
+export class RecipeDetailComponent implements OnInit{
+
+  recipe:Recipe;
+  constructor(
+      private recipeService: RecipeService,
+      private slService: ShoppingListService
+  ) { }
 
   ngOnInit() {
-    setTimeout(()=>this.initialized=true,1);
+    this.recipeService.recipeSelected.subscribe(
+        (recipe:Recipe)=>this.recipe=recipe
+    )
   }
-  ngAfterViewInit(){
 
-    // setTimeout(
-    //     ()=> this.initialized=true
-    //     ,5000);
-  }
-  ngOnDestroy(){
-    this.destroying=true;//
-    console.log("Destroying... ",this.recipe);//
+
+  addIngredients(){
+    this.slService.addIngredients(this.recipe.ingredients);
   }
 
 }

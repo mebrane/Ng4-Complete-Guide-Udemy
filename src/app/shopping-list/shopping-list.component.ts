@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
+import {ShoppingListService} from "./shopping-list.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -8,43 +9,22 @@ import {Ingredient} from "../shared/ingredient.model";
 })
 export class ShoppingListComponent implements OnInit {
 
-  ingredients:Ingredient[]=[
-    new Ingredient(
-          'Apple',
-        10,
-    ),
-    new Ingredient(
-        'Tomatoe',
-        20,
-    ),
-    new Ingredient(
-        'Orange',
-        30,
-    ),
-      //
-    // new Ingredient(
-    //     'Lettuce',
-    //     40,
-    // ),
-    // new Ingredient(
-    //     'Banana',
-    //     Math.floor(Math.random()*100),
-    // ),
-  ];
+  ingredients:Ingredient[];
 
-
-  constructor() { }
+  constructor(private shoppingListService:ShoppingListService) { }
 
   ngOnInit() {
-    this.ingredients.sort(
-        () => .5 - Math.random()
-    );
+    this.shoppingListService.ingredientsChanged.subscribe(
+        (ingredients:Ingredient[]) => this.ingredients=ingredients.reverse()
+    )
+    this.getIngredients();
   }
 
-  onIngredientAdded(ingredient: Ingredient){
-    console.log(ingredient);
-    this.ingredients.push(ingredient);
+  getIngredients(){
+    this.ingredients=this.shoppingListService.getIngredients().reverse();
+    console.log('ingRev',this.ingredients);//
   }
+
 
 
 }
