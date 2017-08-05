@@ -1,29 +1,16 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import {Router, ActivatedRoute, Event, NavigationEnd, UrlTree} from "@angular/router";
+import {Router, ActivatedRoute,} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Injectable()
 export class AuthService {
 
-    private auth: boolean = false
-    private curUrl: string;
+    private auth: boolean = false;
     authEvent = new EventEmitter<boolean>();
 
     constructor(private router: Router,
-                private route: ActivatedRoute,) {
-        /*Subscribe to Router Events to get current url and queryParams*/
-        this.router.events.subscribe(
-            (ev: Event) => {
-                if (ev instanceof NavigationEnd) {
-                    this.curUrl = ev["url"]
-                }
-                // if (ev instanceof NavigationEnd) {
-                //     /*the variable curUrl holds the current (active) route*/
-                //     this.curUrl = ev["url"]
-                //     /* the variable curUrlTree holds all params, queryParams, segments and fragments from the current (active) route */
-                //     // this.curUrlTree = this.router.parseUrl(this.router.url);
-                // }
-            }
-        )
+                private route: ActivatedRoute,
+                private location: Location,) {
 
         this.authEvent.subscribe(
             (auth: boolean) => {
@@ -37,7 +24,7 @@ export class AuthService {
         if (this.auth) {
             return true
         } else {
-            this.redirectAfterLogout()
+            this.redirectIfNotAuth()
             return false
         }
     }
@@ -47,7 +34,7 @@ export class AuthService {
         this.redirectAfterLogin()
     }
 
-    redirectAfterLogin(){
+    redirectAfterLogin() {
         this.router.navigate([
             this.route.snapshot.queryParams["returnUrl"] || "/"
         ])
@@ -55,18 +42,37 @@ export class AuthService {
 
     logout() {
         this.authEvent.emit(false)
-        this.redirectAfterLogout()
     }
 
-    redirectAfterLogout() {
-        // console.log("curUrl", this.curUrl);
-        // console.log("curUrl2", this.route.snapshot.url[0].path);
+    redirectIfNotAuth() {
 
+        //Default
+        let returnUrl: string = "/";
+
+        let queryParams = this.router.parseUrl(this.location.path()).queryParams;
+
+        /*
+         Si el path tiene un return Url lo vuelve a asignar
+         Si el path no tiene un return Url, asigna el path completo
+         */
+        if ("returnUrl" in queryParams) {
+            returnUrl = queryParams["returnUrl"]
+        } else {
+            returnUrl = this.location.path()
+        }
+
+        /*Testing Routes*/
+        //        let date = new Date()
+        //        let dateStr = `<${date.getMinutes()}:${date.getSeconds()}>`//
+        //        console.log(
+        //            `path ${dateStr} - ${this.location.path()}
+        // queryParams ${dateStr} - ${JSON.stringify(queryParams)}
+        // returnUrl ${dateStr} - ${returnUrl}`
+        //        )
         this.router.navigate(["/login"], {
             queryParams: {
-                returnUrl: this.curUrl
+                returnUrl: returnUrl
             }
         })
-
     }
 }
