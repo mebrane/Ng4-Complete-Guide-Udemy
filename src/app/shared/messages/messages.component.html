@@ -1,0 +1,5 @@
+<div *ngIf="data;else infoText" class="alert alert-{{data.type}}" role="alert">{{data.message}}</div>
+
+<ng-template #infoText>
+    {{defaultMessage}}
+</ng-template>

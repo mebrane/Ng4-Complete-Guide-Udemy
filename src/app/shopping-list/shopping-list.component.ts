@@ -15,14 +15,15 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit() {
     this.shoppingListService.ingredientsChanged.subscribe(
-        (ingredients:Ingredient[]) => this.ingredients=ingredients.reverse()
+        // (ingredients:Ingredient[]) => this.ingredients=ingredients.reverse()
+        () => {this.getIngredients()}
     )
     this.getIngredients();
   }
 
   getIngredients(){
     this.ingredients=this.shoppingListService.getIngredients().reverse();
-    console.log('ingRev',this.ingredients);//
+    // console.log('ingRev',this.ingredients);//
   }
 
 

@@ -1,4 +1,7 @@
-<ng-template #infoText>Select a Recipe.</ng-template>
+<ng-template #infoText>
+    <app-messages [data]="recipeNotFound"></app-messages>
+    <!--<app-testing></app-testing>-->
+</ng-template>
 <div  *ngIf="recipe;else infoText" >
     <div class="row" >
         <div class="col-sm-12">

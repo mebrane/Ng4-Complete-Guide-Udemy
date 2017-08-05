@@ -6,12 +6,15 @@ import {RecipeItemComponent} from "./recipe-list/recipe-item/recipe-item.compone
 import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
 import {BsDropdownModule} from "ngx-bootstrap";
 import {RecipeService} from "./recipe.service";
+import {RouterModule} from "@angular/router";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     imports: [
         CommonModule,
-        BsDropdownModule.forRoot()
-
+        BsDropdownModule.forRoot(),
+        RouterModule,
+        SharedModule
     ],
 
     declarations: [

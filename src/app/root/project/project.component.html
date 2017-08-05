@@ -1,19 +1,8 @@
-<app-header (navSelected)="onSelectedNav($event)"></app-header>
+<app-navbar></app-navbar>
 <div class="container">
     <div class="row">
-        <h3>Root Component</h3>
+        <h3>App Component</h3>
         <hr>
-
-
-        <div [ngSwitch]="item" class="col-sm-12">
-
-
-            <app-shopping-list *ngSwitchCase="'shopping-list'">...</app-shopping-list>
-            <app-recipes *ngSwitchDefault>...</app-recipes>
-        </div>
-
+        <router-outlet></router-outlet>
     </div>
 </div>
-<!--<br/><br/><br/><br/>-->
-<!--&lt;!&ndash;<hr>&ndash;&gt;-->
-<!--<app-footer></app-footer>-->
