@@ -22,13 +22,20 @@ export class NavbarComponent implements OnInit {
       private route:ActivatedRoute,
   ) { }
 
+  loggedIn:boolean;
   ngOnInit() {
 
     this.router.events.subscribe((event: Event) => {
       this.currentUrl=event["url"];
       // console.log(this.currentUrl);//this will give you required url
 
-    });
+    })
+
+    this.authSrv.authEvent.subscribe(
+        (logged:boolean)=>{
+          this.loggedIn=logged
+        }
+    )
   }
 
   randomUrl(){
@@ -45,7 +52,7 @@ export class NavbarComponent implements OnInit {
   // }
 
   logout(){//
-    console.log("current",this.currentUrl)
-     this.authSrv.logout(this.currentUrl)
+    // console.log("current",this.currentUrl)
+     this.authSrv.logout()
   }
 }

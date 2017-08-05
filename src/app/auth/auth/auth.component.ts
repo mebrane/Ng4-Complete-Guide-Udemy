@@ -16,16 +16,14 @@ export class AuthComponent implements OnInit {
       private route:ActivatedRoute,
   ) { }
 
+
   ngOnInit() {
+
+
+
   }
 
   login(){
     this.authSrv.login()
-    this.router.navigate([this.authSrv.afterLoginPath])
   }
-  // logout(){
-  //   this.authSrv.logout("")
-  //   console.log("url",this.route.snapshot)////7
-  //   // this.router.navigate(['/login'])
-  // }
 }

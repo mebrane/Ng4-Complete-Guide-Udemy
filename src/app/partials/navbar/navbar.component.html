@@ -16,8 +16,8 @@
                 <li routerLinkActive="active"><a [routerLink]="['/shopping-list']">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
-                <li><a href="/logout" (click)="logout();false">Logout</a></li>
+                <li *ngIf="!loggedIn" routerLinkActive="active"><a routerLink="/login">Login</a></li>
+                <li *ngIf="loggedIn"><a href="/logout" (click)="logout();false">Logout</a></li>
                 <li class="dropdown" dropdown>
                     <a class="dropdown-toggle" role="button" dropdownToggle>Manage <span class="caret"></span></a>
 
