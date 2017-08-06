@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {RecipesComponent} from "./recipes/recipes.component";
 import {MessagesComponent} from "./shared/messages/messages.component";
@@ -8,48 +8,69 @@ import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {PageNotFoundComponent} from "./shared/pages/page-not-found/page-not-found.component";
 import {AuthComponent} from "./auth/auth/auth.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
+import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
 
-const appRoutes:Routes=[
-  {
-    path: 'recipes',
-    canActivate: [AuthGuardService],
-    component: RecipesComponent,
-    children:[
-      {   path:'',
-        component:MessagesComponent,
+const appRoutes: Routes = [
+    {
+        path: 'recipes',
         data: {
-          type:'info',
-          message:"Select a Recipe"
+            name: 'recipes'
+        },
+        canActivate: [AuthGuardService],
+        component: RecipesComponent,
+        children: [
+            {
+                path: '',
+                component: MessagesComponent,
+                data: {
+                    type: 'info',
+                    message: "Select a Recipe"
+                }
+            },
+            {
+                path: ':id',
+                component: RecipeDetailComponent,
+                data: {
+                    name: "recipes.detail"
+                }
+            }, {
+                path: ':id/edit',
+                component: RecipeEditComponent,
+                data: {
+                    name: "recipes.edit"
+                }
+            },
+        ]
+    },
+    {
+        path: 'shopping-list',
+        component: ShoppingListComponent,
+        canActivate: [AuthGuardService],
+        data: {
+            name: "shopping-list"
         }
-      },
-      {   path:':id',
-        component:RecipeDetailComponent
-      }
-    ]
-  },
-  {
-    path: 'shopping-list',
-    component: ShoppingListComponent,
-    canActivate: [AuthGuardService],
-  },
-  { path: '',
-    redirectTo: '/recipes',
-    pathMatch: 'full'
-  },
-  { path: 'login',
-    component:AuthComponent,
-  },
-  { path: '**', component: PageNotFoundComponent }
+    },
+    {
+        path: '',
+        redirectTo: '/recipes',
+        pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: AuthComponent,
+    },
+    {path: '**', component: PageNotFoundComponent}
 ]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(appRoutes),
-  ],
-  declarations: [],
-  exports:[
-      RouterModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forRoot(appRoutes),
+    ],
+    declarations: [],
+    exports: [
+        RouterModule
+    ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

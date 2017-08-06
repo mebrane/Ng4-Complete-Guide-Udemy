@@ -7,6 +7,7 @@ export class AuthService {
 
     private auth: boolean = false;
     authEvent = new EventEmitter<boolean>();
+    private timeWait = 1;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -15,23 +16,36 @@ export class AuthService {
         this.authEvent.subscribe(
             (auth: boolean) => {
                 this.auth = auth;
-                this.checkAuth()
+                //this.checkAuth()
+                if (!auth) {
+                    this.redirectIfNotAuth()
+                }
             }
         )
     }
 
-    checkAuth(): boolean {
-        if (this.auth) {
-            return true
-        } else {
-            this.redirectIfNotAuth()
-            return false
-        }
+    isAuthenticated(): Promise<boolean> {
+        return new Promise(
+            (resolve, reject) => {
+                setTimeout(
+                    () => {
+                        this.authEvent.emit(this.auth)
+                        resolve(this.auth)
+                    },
+                    this.timeWait
+                )
+
+            }
+        )
     }
 
     login() {
-        this.authEvent.emit(true)
-        this.redirectAfterLogin()
+        setTimeout(() => {
+                //this.authEvent.emit(true)
+                this.auth=true;
+                this.redirectAfterLogin()
+            }, this.timeWait
+        )
     }
 
     redirectAfterLogin() {
@@ -45,21 +59,16 @@ export class AuthService {
     }
 
     redirectIfNotAuth() {
-
-        //Default
-        let returnUrl: string = "/";
-
-        let queryParams = this.router.parseUrl(this.location.path()).queryParams;
-
+        let returnUrl: string;
+        let route = this.router.parseUrl(this.location.path())
+        let queryParams=route.queryParams
         /*
          Si el path tiene un return Url lo vuelve a asignar
          Si el path no tiene un return Url, asigna el path completo
          */
-        if ("returnUrl" in queryParams) {
-            returnUrl = queryParams["returnUrl"]
-        } else {
-            returnUrl = this.location.path()
-        }
+        returnUrl = ("returnUrl" in queryParams)
+            ? queryParams["returnUrl"]
+            : this.location.path()
 
         /*Testing Routes*/
         //        let date = new Date()
@@ -72,7 +81,8 @@ export class AuthService {
         this.router.navigate(["/login"], {
             queryParams: {
                 returnUrl: returnUrl
-            }
+            },
         })
     }
+
 }

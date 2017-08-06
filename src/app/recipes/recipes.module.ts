@@ -8,13 +8,16 @@ import {BsDropdownModule} from "ngx-bootstrap";
 import {RecipeService} from "./recipe.service";
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
         CommonModule,
         BsDropdownModule.forRoot(),
         RouterModule,
-        SharedModule
+        SharedModule,
+        FormsModule,
     ],
 
     declarations: [
@@ -22,13 +25,15 @@ import {SharedModule} from "../shared/shared.module";
         RecipeListComponent,
         RecipeItemComponent,
         RecipeDetailComponent,
+        RecipeEditComponent,
 
     ],
     exports: [
         RecipesComponent,
         RecipeListComponent,
         RecipeItemComponent,
-        RecipeDetailComponent
+        RecipeDetailComponent,
+        RecipeEditComponent,
 
     ],
     providers:[
