@@ -16,14 +16,12 @@ export class RecipeEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        let id=+this.route.snapshot.params["id"]
+        let id = +this.route.snapshot.params["id"]
         this.recipe = this.recipeSrv.getRecipe(id)
-        console.log("recipe",this.recipe)
+        this.recipeSrv.setCurId(id)
         this.route.params.subscribe(
             (params: Params) => {
-               // console.log("id",params["id"])
                 this.recipe = this.recipeSrv.getRecipe(+params["id"])
-                // console.log("recipe",this.recipe)
             }
         )
     }

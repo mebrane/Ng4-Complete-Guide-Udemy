@@ -1,6 +1,7 @@
 import {Injectable, EventEmitter} from '@angular/core';
 import {Recipe} from "./recipe.model";
 import {Ingredient} from "../shared/ingredient.model";
+import {Location} from "@angular/common";
 
 @Injectable()
 export class RecipeService {
@@ -45,10 +46,14 @@ export class RecipeService {
         ]
     )
   ];
+  private curId:number
+  curIdEvt=new EventEmitter<number>()
 
   recipeSelected = new EventEmitter<Recipe>();
 
-  constructor() { }
+  constructor(private location:Location) {
+
+  }
 
   getRecipes(){
     return this.recipes.slice();
@@ -59,5 +64,18 @@ export class RecipeService {
           (r:Recipe)=> r.id==id
       )
   }
+
+  setCurId(id:number){
+      this.curId=id
+      this.curIdEvt.emit(this.curId)
+  }
+  getCurId(){
+      return this.curId
+  }
+
+  // path = new EventEmitter<string>()
+//
+
+
 
 }
