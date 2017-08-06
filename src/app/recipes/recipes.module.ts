@@ -8,8 +8,8 @@ import {BsDropdownModule} from "ngx-bootstrap";
 import {RecipeService} from "./recipe.service";
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
-import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import {FormsModule} from "@angular/forms";
+import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 
 @NgModule({
     imports: [
@@ -25,7 +25,7 @@ import {FormsModule} from "@angular/forms";
         RecipeListComponent,
         RecipeItemComponent,
         RecipeDetailComponent,
-        RecipeEditComponent,
+        RecipeFormComponent,
 
     ],
     exports: [
@@ -33,7 +33,7 @@ import {FormsModule} from "@angular/forms";
         RecipeListComponent,
         RecipeItemComponent,
         RecipeDetailComponent,
-        RecipeEditComponent,
+        RecipeFormComponent,
 
     ],
     providers:[

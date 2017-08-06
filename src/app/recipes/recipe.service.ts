@@ -46,8 +46,6 @@ export class RecipeService {
         ]
     )
   ];
-  private curId:number
-  curIdEvt=new EventEmitter<number>()
 
   recipeSelected = new EventEmitter<Recipe>();
 
@@ -65,13 +63,7 @@ export class RecipeService {
       )
   }
 
-  setCurId(id:number){
-      this.curId=id
-      this.curIdEvt.emit(this.curId)
-  }
-  getCurId(){
-      return this.curId
-  }
+
 
   // path = new EventEmitter<string>()
 //

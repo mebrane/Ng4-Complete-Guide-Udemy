@@ -8,7 +8,7 @@ import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {PageNotFoundComponent} from "./shared/pages/page-not-found/page-not-found.component";
 import {AuthComponent} from "./auth/auth/auth.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
-import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
+import {RecipeFormComponent} from "./recipes/recipe-form/recipe-form.component";
 
 const appRoutes: Routes = [
     {
@@ -28,6 +28,13 @@ const appRoutes: Routes = [
                 }
             },
             {
+                path: 'new-recipe',
+                component: RecipeFormComponent,
+                data: {
+                    name: "recipes.new"
+                }
+            },
+            {
                 path: ':id',
                 component: RecipeDetailComponent,
                 data: {
@@ -35,7 +42,7 @@ const appRoutes: Routes = [
                 }
             }, {
                 path: ':id/edit',
-                component: RecipeEditComponent,
+                component: RecipeFormComponent,
                 data: {
                     name: "recipes.edit"
                 }

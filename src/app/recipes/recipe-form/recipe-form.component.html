@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="recipe;else infoText">
   <div class="row">
     <form role="form" class="col-md-9 go-right">
-      <h2>Edit Recipe</h2>
-      <p>Editing recipe <i>{{recipe.name}}</i></p>
+      <h2 [ngClass]="{'green':editMode}">{{title}}</h2>
+      <p>{{desc}} <b>{{recipe.name}}</b></p>
       <div class="form-group">
         <input id="name" name="name" type="text" class="form-control" required ngModel="{{recipe.name}}">
         <label for="name">Name</label>
@@ -15,3 +15,6 @@
     <!--<p class="bg-success" style="padding:10px;margin-top:20px;clear:both"><small><a href="http://css-tricks.com/float-labels-css/" target="_blank">Link</a> to original article</small></p>-->
   </div>
 </div>
+<template #infoText>
+  <app-messages [data]="{type:'warning',message:'Recipe Not Found'}"></app-messages>
+</template>
