@@ -1,8 +1,6 @@
-import {Injectable, EventEmitter} from '@angular/core';
+import {Injectable,} from '@angular/core';
 import {Recipe} from "./recipe.model";
 import {Ingredient} from "../shared/ingredient.model";
-import {Location} from "@angular/common";
-
 @Injectable()
 export class RecipeService {
 
@@ -47,9 +45,7 @@ export class RecipeService {
     )
   ];
 
-  recipeSelected = new EventEmitter<Recipe>();
-
-  constructor(private location:Location) {
+  constructor() {
 
   }
 
@@ -62,12 +58,5 @@ export class RecipeService {
           (r:Recipe)=> r.id==id
       )
   }
-
-
-
-  // path = new EventEmitter<string>()
-//
-
-
 
 }

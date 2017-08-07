@@ -1,5 +1,5 @@
-import {Injectable, EventEmitter, OnInit} from '@angular/core';
-import {Ingredient} from "../shared/ingredient.model";
+import {Injectable, EventEmitter,} from '@angular/core'
+import {Ingredient} from "../shared/ingredient.model"
 
 @Injectable()
 export class ShoppingListService {
@@ -32,7 +32,6 @@ export class ShoppingListService {
 
     private updateIngredientsList() {
         this.ingredientsChanged.emit(this.ingredients.slice());
-        // console.log('Ingredients updated: ',this.ingredients);
     }
 
     constructor() {
@@ -48,15 +47,9 @@ export class ShoppingListService {
     }
 
     addIngredients(ingredients: Ingredient[]) {
-        //this.ingredients=this.ingredients.concat(ingredients);
         this.ingredients.push(...ingredients);
         this.updateIngredientsList();
     }
 
-    getIngredient(id:number){
-        // this.ingredients.find(
-        //     (i:Ingredient)=>i.
-        // )
-    }
 
 }

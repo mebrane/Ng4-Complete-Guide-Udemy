@@ -13,7 +13,6 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
   ],
   declarations: [BasicHighlightDirective, MessagesComponent, TestingComponent, PageNotFoundComponent],
   exports:[
-      // BasicHighlightDirective,
       MessagesComponent,
       TestingComponent,
       PageNotFoundComponent,

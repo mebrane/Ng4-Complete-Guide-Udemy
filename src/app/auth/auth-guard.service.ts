@@ -21,8 +21,8 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
         return this.authSrv.isAuthenticated()
             .then(
-                (auth:boolean)=>{
-                    console.log("auth",auth)
+                (auth: boolean) => {
+                    console.log("auth", auth)
                     return auth
                 }
             )

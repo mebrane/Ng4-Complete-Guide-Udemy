@@ -1,29 +1,21 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {AuthService} from "../auth.service";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core'
+import {AuthService} from "../auth.service"
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
-  // encapsulation: ViewEncapsulation.None
+    selector: 'app-auth',
+    templateUrl: './auth.component.html',
+    styleUrls: ['./auth.component.css'],
+    // encapsulation: ViewEncapsulation.None
 })
 export class AuthComponent implements OnInit {
 
-  constructor(
-      private authSrv:AuthService,
-      private router:Router,
-      private route:ActivatedRoute,
-  ) { }
+    constructor(private authSrv: AuthService,) {
+    }
 
+    ngOnInit() {
+    }
 
-  ngOnInit() {
-
-
-
-  }
-
-  login(){
-    this.authSrv.login()
-  }
+    login() {
+        this.authSrv.login()
+    }
 }

@@ -42,7 +42,7 @@ export class AuthService {
     login() {
         setTimeout(() => {
                 //this.authEvent.emit(true)
-                this.auth=true;
+                this.auth = true;
                 this.redirectAfterLogin()
             }, this.timeWait
         )
@@ -61,7 +61,7 @@ export class AuthService {
     redirectIfNotAuth() {
         let returnUrl: string;
         let route = this.router.parseUrl(this.location.path())
-        let queryParams=route.queryParams
+        let queryParams = route.queryParams
         /*
          Si el path tiene un return Url lo vuelve a asignar
          Si el path no tiene un return Url, asigna el path completo
