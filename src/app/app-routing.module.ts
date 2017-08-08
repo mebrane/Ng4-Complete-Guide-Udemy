@@ -9,6 +9,7 @@ import {PageNotFoundComponent} from "./shared/pages/page-not-found/page-not-foun
 import {AuthComponent} from "./auth/auth/auth.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {RecipeFormComponent} from "./recipes/recipe-form/recipe-form.component";
+import {TestingComponent} from "./shared/testing/testing.component";
 
 const appRoutes: Routes = [
     {
@@ -65,6 +66,10 @@ const appRoutes: Routes = [
     {
         path: 'login',
         component: AuthComponent,
+    },
+    {
+        path:'testing',
+        component: TestingComponent,
     },
     {path: '**', component: PageNotFoundComponent}
 ]
