@@ -14,4 +14,18 @@ export class SharedService {
 
     return text;
   }
+
+    randStrWithNum(): string {
+        var text = "";
+        var possible =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+                .split('')
+                .sort(() => 0.5 - Math.random())
+                .join('')
+
+        for (var i = 0; i < 50; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
 }

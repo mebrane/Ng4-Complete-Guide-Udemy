@@ -1,84 +1,80 @@
 import {Component, OnInit, ViewChild, AfterViewInit, AfterContentInit, AfterViewChecked} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {
+    NgForm, FormGroup, FormControl, Validators, FormArray, ValidatorFn, AbstractControl,
+    ValidationErrors
+} from "@angular/forms";
 
 @Component({
     selector: 'app-testing',
     templateUrl: './testing.component.html',
     styleUrls: ['./testing.component.css']
 })
-export class TestingComponent implements OnInit,AfterViewInit,AfterContentInit,AfterViewChecked {
+export class TestingComponent implements OnInit {
 
-    @ViewChild("f") f: NgForm
-    rand: string
-    // input:{
-    //   username:string
-    //   secret:string
-    // }
+    rctForm: FormGroup
+    forbiddenNames=[
+        'roberto','fernando'
+    ]
+
     constructor() {
-        // this.input.username="username_"+this.randStr()
-        // this.input.secret="secret_"+this.randStr()
-    }
-
-    ngAfterViewInit() {
-
-        setTimeout(
-            ()=>{
-                this.setValues()
-                console.log("View init")
-            },
-            100
-        )
-
-    }
-    ngAfterViewChecked(){
-        // this.setValues()
-        // console.log("View checked")//
-
-    }
-
-    ngAfterContentInit() {
-        // this.setValues()
-        console.log("content init")
-    }
-
-    setValues() {
-        this.f.form.patchValue({
-            email: "email@mail.com"
+        this.rctForm = new FormGroup({
+            'username': new FormControl(null, [
+                Validators.required,
+                Validators.minLength(6),
+                this.forbiddenNamesValidator.bind(this)
+            ]),
+            'email': new FormControl(null, [
+                Validators.required,
+                Validators.email,
+                Validators.minLength(6),
+            ]),
+            'secret': new FormControl(null, [
+                    Validators.required,
+                    Validators.minLength(6),
+                ]
+            ),
+            'hobbies': new FormArray([],
+                // this.forbiddenNamesValidator.bind(this)
+            )
         })
-        console.log("values setted")
     }
+
 
     ngOnInit() {
-        // this.input={
-        //   username:"username_"+this.randStr(),
-        //   secret:"secret_"+this.randStr()
-        // }
-        // this.rand=this.randStr()
-        // console.log("rand",this.rand)
-        this.rand = "_";
-        // this.f.form.patchValue({
-        //   email__:"email@mail.com"
-        // })
-
-    }
-
-    randStr(): string {
-        var text = "";
-        var possible =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-                .split('')
-                .sort(() => 0.5 - Math.random())
-                .join('')
-
-        for (var i = 0; i < 50; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        return text;
+        // (<FormControl>this.rctForm.get("username")).errors
     }
 
     onSubmit() {
-        console.log(this.f.value)
+        console.log(this.rctForm)
     }
 
+    addHobby() {
+        const hobby = new FormControl(null, [
+           // Validators.required
+            Validators.minLength(5)
+        ]);
+
+        // console.log(<FormArray>this.rctForm['hobbies']);
+        let hobbies= (<FormArray>this.rctForm.get('hobbies'));
+        if(hobbies.length<5){
+            hobbies.push(hobby);
+        }
+        // (<FormArray>this.rctForm.get('hobbies')).push(hobby)
+    }
+
+    forbiddenNamesValidator(ctrl:AbstractControl)
+    /*:{
+        [key: string]: any;
+    }*/
+    :ValidationErrors
+    {
+        let index=this.forbiddenNames.indexOf(ctrl.value)
+        // if(this.forbiddenNames.indexOf(ctrl.value)>-1){
+        // console.log("indexOf",index)//
+        if(index>-1){
+            return {'forbiddenName':true}
+        }
+        return null;
+    }
 
 }

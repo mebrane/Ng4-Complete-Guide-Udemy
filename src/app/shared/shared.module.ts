@@ -5,15 +5,26 @@ import {MessagesComponent} from './messages/messages.component';
 import {RouterModule} from "@angular/router";
 import {TestingComponent} from "./testing/testing.component";
 import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AlertModule} from 'ngx-bootstrap/alert';
+import {FormsMessagesComponent} from './forms/forms-messages/forms-messages.component';
+import { FormsCustomMessageComponent } from './forms/forms-custom-message/forms-custom-message.component';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
-        FormsModule,
+        ReactiveFormsModule,
+        AlertModule.forRoot(),
     ],
-    declarations: [BasicHighlightDirective, MessagesComponent, TestingComponent, PageNotFoundComponent],
+    declarations: [
+        BasicHighlightDirective,
+        MessagesComponent,
+        TestingComponent,
+        PageNotFoundComponent,
+        FormsMessagesComponent,
+        FormsCustomMessageComponent
+    ],
     exports: [
         MessagesComponent,
         TestingComponent,

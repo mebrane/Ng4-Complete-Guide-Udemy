@@ -1,0 +1,26 @@
+<div *ngIf="!ctrl.valid && ctrl.touched">
+    <div class="alert alert-warning" *ngIf="ctrl.errors">
+        <ul>
+            <li *ngIf="ctrl.errors.required">
+                Field <b>{{field}}</b> is required.
+            </li>
+
+            <li *ngIf="ctrl.errors.minlength">
+                Field <b>{{field}}</b> must have {{ctrl.errors.minlength.requiredLength}} characters at least.
+                <!--{{ctrl.errors | json}}-->
+                <!--is {{ctrl.errors.minlength.actualLength}}.-->
+                <!--Min length must be {{ctrl.errors.minlength.minLength}}.-->
+            </li>
+
+            <li *ngIf="ctrl.errors.email">
+                Field <b>{{field}}</b> is not a valid email.
+            </li>
+            <ng-content></ng-content>
+            <div *ngIf="json">
+                {{ctrl.errors | json}}
+            </div>
+        </ul>
+    </div>
+    <!--{{ctrl.errors | json}}-->
+</div>
+
