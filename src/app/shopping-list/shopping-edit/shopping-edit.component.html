@@ -2,20 +2,51 @@
     <div class="col-sm-12">
         <form action="#">
             <div class="row">
-                <form preventDefault (submit)="onSubmit(f)" #f>
+                <form (ngSubmit)="onSubmit()" #f="ngForm">
                     <div class="col-sm-3 form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" class="form-control" #nameInput >
+                        <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-control"
+                                ngModel
+                                minlength="5"
+                                required>
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="amount">Amount</label>
-                        <input type="number" id="amount" class="form-control" min="1" #amountInput>
+                        <input
+                                type="number"
+                                id="amount"
+                                name="amount"
+                                class="form-control"
+                                min="1"
+                                ngModel
+                                pattern="^[1-9]\d*$"
+                                required>
                     </div>
                     <div class="col-sm-5 form-group">
                         <label>Actions</label><br/>
-                        <button preventDefault class="btn btn-success" type="submit" (click)="addIngredient();false">Add</button>
-                        <button class="btn btn-danger" type="button">Delete</button>
-                        <button class="btn btn-primary" type="button" (click)="clearIngredient()">Clear</button>
+                        <button
+                                [disabled]="!ngform.valid"
+                                class="btn btn-{{editMode ? 'success' : 'primary'}}"
+                                type="submit">
+                            {{editMode ? 'Save' : 'Add'}}
+                        </button>
+                        <button
+                                *ngIf="editMode"
+                                class="btn btn-danger"
+                                type="button"
+                                (click)="onDelete()">
+                            Delete
+                        </button>
+                        <button
+                                class="btn btn-default"
+                                type="button"
+                                (click)="onClear()">
+                            Clear
+                        </button>
                     </div>
                 </form>
             </div>

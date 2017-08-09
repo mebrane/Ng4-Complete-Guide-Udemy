@@ -4,7 +4,8 @@ import {Ingredient} from "../shared/ingredient.model"
 @Injectable()
 export class ShoppingListService {
 
-    ingredientsChanged = new EventEmitter<Ingredient[]>();
+    ingredientsChangedEvt = new EventEmitter<Ingredient[]>();
+    ingredientSelectedEvt = new EventEmitter<number>()
 
     private ingredients: Ingredient[] = [
         new Ingredient(
@@ -15,24 +16,20 @@ export class ShoppingListService {
             'Tomatoe',
             20,
         ),
-        new Ingredient(
-            'Orange',
-            30,
-        ),
+        // new Ingredient(
+        //     'Orange',
+        //     30,
+        // ),
         //
         // new Ingredient(
         //     'Lettuce',
         //     40,
         // ),
-        // new Ingredient(
-        //     'Banana',
-        //     Math.floor(Math.random()*100),
-        // ),
+        new Ingredient(
+            'Banana',
+            Math.floor(Math.random() * 100),
+        ),
     ];
-
-    private updateIngredientsList() {
-        this.ingredientsChanged.emit(this.ingredients.slice());
-    }
 
     constructor() {
     }
@@ -51,5 +48,28 @@ export class ShoppingListService {
         this.updateIngredientsList();
     }
 
+    getIngredient(index: number) {
+        return this.ingredients[index]
+    }
+
+    selectIngredient(index: number) {
+        this.ingredientSelectedEvt.emit(index)
+    }
+
+    updateIngredient(index: number, ingredient: Ingredient) {
+        //console.log(index, ingredient)
+        this.ingredients[index] = ingredient
+        this.updateIngredientsList()
+    }
+
+    deleteIngredient(index: number) {
+        this.ingredients.splice(index, 1)
+        this.updateIngredientsList()
+    }
+
+    private updateIngredientsList() {
+        this.ingredientsChangedEvt.emit(this.ingredients.slice());
+    }
 
 }
+

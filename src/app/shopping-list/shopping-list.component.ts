@@ -15,7 +15,7 @@ export class ShoppingListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.shoppingListService.ingredientsChanged.subscribe(
+        this.shoppingListService.ingredientsChangedEvt.subscribe(
             () => {
                 this.getIngredients()
             }
@@ -24,7 +24,11 @@ export class ShoppingListComponent implements OnInit {
     }
 
     getIngredients() {
-        this.ingredients = this.shoppingListService.getIngredients().reverse();
+        this.ingredients = this.shoppingListService.getIngredients();
+    }
+
+    onSelectIngredient(index: number) {
+        this.shoppingListService.selectIngredient(index)
     }
 
 

@@ -4,18 +4,23 @@
 <div class="row">
     <div class="col-sm-7">
         <ul class="list-group" *ngIf="ingredients;else infoText">
-            <a      *ngFor="let ingredient of ingredients"
-                    style="cursor:pointer"
-                    class="list-group-item">
+            <a *ngFor="let ingredient of ingredients | reverse;let i=index"
+               style="cursor:pointer"
+               class="list-group-item"
+               (click)="onSelectIngredient(ingredients.length-i-1)"
+            >
                 {{ingredient.name}} ({{ingredient.amount}})
             </a>
         </ul>
         <ng-template #infoText>
 
-                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                <span class="sr-only">Loading...</span>
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
 
         </ng-template>
+        <div *ngIf="ingredients.length==0">
+            <b>No ingredients.</b>
+        </div>
     </div>
 </div>
 

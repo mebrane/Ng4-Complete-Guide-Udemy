@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AlertModule} from 'ngx-bootstrap/alert';
 import {FormsMessagesComponent} from './forms/forms-messages/forms-messages.component';
 import { FormsCustomMessageComponent } from './forms/forms-custom-message/forms-custom-message.component';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 @NgModule({
     imports: [
@@ -23,12 +24,14 @@ import { FormsCustomMessageComponent } from './forms/forms-custom-message/forms-
         TestingComponent,
         PageNotFoundComponent,
         FormsMessagesComponent,
-        FormsCustomMessageComponent
+        FormsCustomMessageComponent,
+        ReversePipe
     ],
     exports: [
         MessagesComponent,
         TestingComponent,
         PageNotFoundComponent,
+        ReversePipe,
     ]
 })
 export class SharedModule {
