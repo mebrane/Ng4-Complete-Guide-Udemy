@@ -3,8 +3,14 @@
   Recipe List
 </p>-->
 <h4>Recipe List</h4>
+<div class="row">
+    <div class="col-sm-12">
+        <input type="text" class="form-control" [(ngModel)]="search"/>
+    </div>
+</div>
+<hr>
 <app-recipe-item
-        *ngFor="let recipe of recipes"
+        *ngFor="let recipe of recipes | filterBy: ['name']: search | reverse"
         [recipe]="recipe"
 
 ></app-recipe-item>

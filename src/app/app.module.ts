@@ -17,6 +17,7 @@ import {ShoppingListService} from "./shopping-list/shopping-list.service";
 import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
+import {NgArrayPipesModule} from "ngx-pipes";
 
 
 
@@ -35,6 +36,7 @@ import {AuthGuardService} from "./auth/auth-guard.service";
         BootstrapModule,
         RecipesModule,
         ShoppingListModule,
+        // NgArrayPipesModule,
 
     ],
     providers: [

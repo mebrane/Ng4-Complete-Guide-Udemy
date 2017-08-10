@@ -10,6 +10,7 @@ import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RecipeForm2Component } from './recipe-form2/recipe-form2.component';
+import {NgArrayPipesModule} from "ngx-pipes";
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { RecipeForm2Component } from './recipe-form2/recipe-form2.component';
         SharedModule,
         FormsModule,
         ReactiveFormsModule,
+        NgArrayPipesModule,
     ],
 
     declarations: [

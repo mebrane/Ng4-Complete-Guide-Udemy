@@ -11,6 +11,7 @@ import {Subscription} from "rxjs";
 export class RecipeListComponent implements OnInit, OnDestroy {
     recipes: Recipe[];
     subscription:Subscription
+    search:string
 
     constructor(private recipeService: RecipeService,) {
     }
