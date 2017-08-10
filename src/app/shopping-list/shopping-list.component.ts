@@ -20,7 +20,7 @@ export class ShoppingListComponent implements OnInit {
                 this.getIngredients()
             }
         )
-        this.getIngredients();
+        this.getIngredients()
     }
 
     getIngredients() {

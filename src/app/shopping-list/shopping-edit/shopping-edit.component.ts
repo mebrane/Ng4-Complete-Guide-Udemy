@@ -1,29 +1,36 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef,OnDestroy} from '@angular/core';
 import {Ingredient} from "../../shared/ingredient.model";
 import {ShoppingListService} from "../shopping-list.service";
 import {NgForm} from "@angular/forms";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-shopping-edit',
     templateUrl: './shopping-edit.component.html',
     styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
 
+    isSubs:Subscription
     editMode = false
     ingredientIndex: number
     ingredientSelected: Ingredient
     @ViewChild('f') ngform: NgForm
 
     constructor(private slService: ShoppingListService) {
+
     }
 
     ngOnInit() {
-        this.slService.ingredientSelectedEvt.subscribe(
+        this.isSubs=this.slService.ingredientSelectedEvt.subscribe(
             (index: number) => {
                 this.onEditMode(index)
             }
         )
+    }
+
+    ngOnDestroy(){
+        this.isSubs.unsubscribe()
     }
 
     onSubmit() {
@@ -45,6 +52,11 @@ export class ShoppingEditComponent implements OnInit {
         this.editMode = true
         this.ingredientSelected = this.slService.getIngredient(this.ingredientIndex)
         this.ngform.setValue(this.ingredientSelected)
+        // this.ngform.setValue({
+        //         'name': this.ingredientSelected.name,
+        //         'amount': this.ingredientSelected.amount
+        //     }
+        // )
     }
 
 

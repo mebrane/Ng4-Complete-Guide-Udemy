@@ -1,0 +1,89 @@
+<ng-template #infoText>
+    <app-messages [data]="{type:'warning',message:'Recipe Not Found'}"></app-messages>
+</ng-template>
+
+
+<div class="row" *ngIf="recipe || !editMode;else infoText">
+    <h2 [ngClass]="{'green':editMode}">
+        {{editMode ? 'Edit Recipe' : 'Add a New Recipe'}}
+    </h2>
+
+    <p>
+        {{editMode ? 'Editing recipe ': 'Adding a new recipe'}}
+        <b *ngIf="recipe">{{recipe.name}}</b>
+    </p>
+    <form role="form" class="col-sm-12" (submit)="onSubmit()" [formGroup]="rctform">
+        <!--<div class="row">-->
+        <!---->
+        <!--</div>-->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" class="form-control" [formControl]="rctform.get('name')">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="img">Image Url</label>
+                        <input id="img" type="text" class="form-control" [formControl]="rctform.get('imagePath')">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="description">Description</label>
+                        <textarea
+                                id="description"
+                                class="form-control"
+                                [formControl]="rctform.get('description')"
+                                rows="3"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-6">
+                <!--<label for="img">Image Url</label>-->
+                <img src="{{(rctform.value.imagePath)? rctform.value.imagePath : imgDefault}}" alt=""
+                     class="img-responsive">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label>Ingredients</label>
+            </div>
+            <div class="col-sm-12">
+                <button class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i> Add Ingredient
+                </button>
+            </div>
+        </div>
+        <hr>
+
+        <div formArrayName="ingredients">
+            <div class="row" *ngFor="let ingredient of rctform.get('ingredients').controls; let i=index"
+                 [formGroupName]="i">
+                <!--{{i | json}}-->
+                <div class="form-group col-sm-6">
+                    <input type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="form-group col-sm-2">
+                            <input type="number" class="form-control" formControlName="amount">
+                </div>
+                <div class="form-group col-sm-2">
+                    <button type="button" class="btn btn-sm btn-danger">X</button>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+        <hr>
+        <!--<br><br><br><br>-->
+    </form>
+    <hr>
+</div>
