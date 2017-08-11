@@ -18,7 +18,9 @@ import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {NgArrayPipesModule} from "ngx-pipes";
-
+import {ResourceService} from "./shared/services/resource.service";
+import {HttpModule} from "@angular/http";
+import {DataStorageService} from "./shared/services/data-storage.service";
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import {NgArrayPipesModule} from "ngx-pipes";
         BootstrapModule,
         RecipesModule,
         ShoppingListModule,
+        HttpModule,
         // NgArrayPipesModule,
 
     ],
@@ -44,6 +47,8 @@ import {NgArrayPipesModule} from "ngx-pipes";
         SharedService,
         AuthService,
         AuthGuardService,
+        ResourceService,
+        DataStorageService,
     ],
     bootstrap: [AppComponent],
 

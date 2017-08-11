@@ -22,8 +22,8 @@
                     <a class="dropdown-toggle" role="button" dropdownToggle>Manage <span class="caret"></span></a>
 
                     <ul class="dropdown-menu" *dropdownMenu>
-                        <li><a >Save Data</a></li>
-                        <li><a >Fetch Data</a></li>
+                        <li><a (click)="setRecipes()" >Save Data</a></li>
+                        <li><a (click)="getRecipes()" >Fetch Data</a></li>
                         <li><a routerLink="/testing" >Testing</a></li>
                         <li><a (click)="randomUrl();false">Random Pg</a></li>
                     </ul>

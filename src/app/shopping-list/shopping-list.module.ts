@@ -22,6 +22,7 @@ import {SharedModule} from "../shared/shared.module";
     ],
     providers: [
         // ShoppingListService
+
     ]
 })
 export class ShoppingListModule {
