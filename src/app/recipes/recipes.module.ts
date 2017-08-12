@@ -33,7 +33,7 @@ import {RecipesRouting} from "./recipes.routing";
     ],
     exports: [],
     providers: [
-        RecipeService
+        //RecipeService
     ]
 })
 export class RecipesModule {

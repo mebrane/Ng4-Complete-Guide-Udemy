@@ -127,7 +127,7 @@
                                                             (click)="addHobby()">Add Hobby
                                                     </button>
                                                     <br/>
-                                                    <div *ngFor="let hobbyCtrl of rctForm.get('hobbies').controls;let i = index">
+                                                    <div *ngFor="let hobbyCtrl of rctForm.get('hobbies')['controls'];let i = index">
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <div class="input-group-addon">

@@ -11,6 +11,7 @@ import {Ingredient} from "../shared/models/ingredient.model";
 export class ShoppingListComponent implements OnInit {
 
     ingredients: Ingredient[];
+    error
 
     constructor(private slSrv: ShoppingListService) {
     }
