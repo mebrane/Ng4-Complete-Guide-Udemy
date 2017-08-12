@@ -23,6 +23,7 @@ import {DataStorageService} from "./shared/services/data-storage.service";
 import {Router} from "@angular/router";
 import { HomeComponent } from './home/home.component';
 import {RecipeService} from "./recipes/recipe.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -47,6 +48,8 @@ import {RecipeService} from "./recipes/recipe.service";
         //WildcardRoute
         SharedModule,
         AppRoutingModule,
+
+        BrowserAnimationsModule,
     ],
     providers: [
         ShoppingListService,

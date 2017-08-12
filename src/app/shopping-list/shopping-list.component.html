@@ -4,13 +4,14 @@
 <div class="row">
     <div class="col-sm-7">
         <ul class="list-group" *ngIf="ingredients">
-            <a *ngFor="let ingredient of ingredients | reverse;let i=index"
+            <li [@list1] *ngFor="let ingredient of ingredients | reverse;let i=index"
                style="cursor:pointer"
                class="list-group-item"
                (click)="onSelectIngredient(ingredients.length-i-1)"
+                [ngClass]="{active:ingredientName==ingredient.name}"
             >
                 {{ingredient.name}} ({{ingredient.amount}})
-            </a>
+            </li>
         </ul>
         <div *ngIf="!error && !ingredients">
 

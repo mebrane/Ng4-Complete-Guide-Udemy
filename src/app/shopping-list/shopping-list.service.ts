@@ -21,15 +21,15 @@ export class ShoppingListService {
             'Tomatoe',
             20,
         ),
-        // new Ingredient(
-        //     'Orange',
-        //     30,
-        // ),
-        //
-        // new Ingredient(
-        //     'Lettuce',
-        //     40,
-        // ),
+        new Ingredient(
+            'Orange',
+            30,
+        ),
+
+        new Ingredient(
+            'Lettuce',
+            40,
+        ),
         new Ingredient(
             'Banana',
             Math.floor(Math.random() * 100),
