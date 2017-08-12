@@ -5,12 +5,24 @@ import {PageNotFoundComponent} from "./shared/pages/page-not-found/page-not-foun
 import {AuthComponent} from "./auth/auth/auth.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {TestingComponent} from "./shared/testing/testing.component";
+import {HomeComponent} from "./home/home.component";
 
 const appRoutes: Routes = [
+    // {
+    //     path: '',
+    //     redirectTo: '/recipes',
+    //     pathMatch: 'full'
+    // },
     {
         path: '',
-        redirectTo: '/recipes',
-        pathMatch: 'full'
+        component:HomeComponent,
+        // pathMatch: 'full'
+        canActivate:[AuthGuardService],
+    },
+    {
+      path: "recipes",
+        loadChildren:"./recipes/recipes.module#RecipesModule",
+        canLoad: [AuthGuardService],
     },
     {
         path:'testing',

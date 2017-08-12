@@ -7,11 +7,11 @@ import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
 
 const routes: Routes = [
     {
-        path: 'recipes',
+        path: '',
         data: {
             name: 'recipes'
         },
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
         component: RecipesComponent,
         children: [
             {

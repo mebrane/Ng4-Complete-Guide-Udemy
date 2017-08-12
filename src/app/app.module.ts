@@ -21,19 +21,22 @@ import {ResourceService} from "./shared/services/resource.service";
 import {HttpModule} from "@angular/http";
 import {DataStorageService} from "./shared/services/data-storage.service";
 import {Router} from "@angular/router";
+import { HomeComponent } from './home/home.component';
+import {RecipeService} from "./recipes/recipe.service";
 
 
 @NgModule({
     declarations: [
         AppComponent,
         ProjectComponent,
+        HomeComponent,
     ],
     imports: [
 
         BrowserModule,
         FormsModule,
 
-        RecipesModule,
+        //RecipesModule,
         AuthModule,
         PartialsModule,
         BootstrapModule,
@@ -52,6 +55,7 @@ import {Router} from "@angular/router";
         AuthGuardService,
         ResourceService,
         DataStorageService,
+        RecipeService,
     ],
     bootstrap: [AppComponent],
 
@@ -60,8 +64,9 @@ export class AppModule {
     constructor(router: Router) {
        // console.log('Routes: ', router.config);
         let routes=router.config
-        for(let route of routes){
-            console.log(route['path'])
-        }
+        // for(let route of routes){
+        //     console.log(route['path'])
+        // }
+        console.log(routes)
     }
 }
