@@ -1,5 +1,5 @@
 
-import {Ingredient} from "../shared/ingredient.model";
+import {Ingredient} from "../shared/models/ingredient.model";
 export class Recipe  {
     id:number;
     name:string;

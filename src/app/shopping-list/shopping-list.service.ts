@@ -1,5 +1,5 @@
 import {Injectable, EventEmitter,} from '@angular/core'
-import {Ingredient} from "../shared/ingredient.model"
+import {Ingredient} from "../shared/models/ingredient.model"
 import {Subject} from "rxjs/Subject";
 import {Http, Response} from "@angular/http";
 import {ResourceService} from "../shared/services/resource.service";

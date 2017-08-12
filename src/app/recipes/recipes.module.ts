@@ -6,17 +6,17 @@ import {RecipeItemComponent} from "./recipe-list/recipe-item/recipe-item.compone
 import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
 import {BsDropdownModule} from "ngx-bootstrap";
 import {RecipeService} from "./recipe.service";
-import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { RecipeForm2Component } from './recipe-form2/recipe-form2.component';
+import {RecipeForm2Component} from './recipe-form2/recipe-form2.component';
 import {NgArrayPipesModule} from "ngx-pipes";
+import {RecipesRouting} from "./recipes.routing";
 
 @NgModule({
     imports: [
         CommonModule,
         BsDropdownModule.forRoot(),
-        RouterModule,
+        RecipesRouting,
         SharedModule,
         FormsModule,
         ReactiveFormsModule,
@@ -31,15 +31,8 @@ import {NgArrayPipesModule} from "ngx-pipes";
         RecipeForm2Component,
 
     ],
-    exports: [
-        RecipesComponent,
-        RecipeListComponent,
-        RecipeItemComponent,
-        RecipeDetailComponent,
-        RecipeForm2Component,
-
-    ],
-    providers:[
+    exports: [],
+    providers: [
         RecipeService
     ]
 })

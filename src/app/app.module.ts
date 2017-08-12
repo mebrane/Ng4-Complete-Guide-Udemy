@@ -10,17 +10,17 @@ import {RecipesModule} from "./recipes/recipes.module";
 import {ShoppingListModule} from "./shopping-list/shopping-list.module";
 //Project Components
 import {AppComponent} from "./app.component";
-import { ProjectComponent } from './root/project/project.component';
+import {ProjectComponent} from './root/project/project.component';
 //Project Services
 import {SharedService} from "./shared/shared.service";
 import {ShoppingListService} from "./shopping-list/shopping-list.service";
 import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
-import {NgArrayPipesModule} from "ngx-pipes";
 import {ResourceService} from "./shared/services/resource.service";
 import {HttpModule} from "@angular/http";
 import {DataStorageService} from "./shared/services/data-storage.service";
+import {Router} from "@angular/router";
 
 
 @NgModule({
@@ -29,18 +29,21 @@ import {DataStorageService} from "./shared/services/data-storage.service";
         ProjectComponent,
     ],
     imports: [
-        AppRoutingModule,
+
         BrowserModule,
         FormsModule,
+
+        RecipesModule,
         AuthModule,
-        SharedModule,
         PartialsModule,
         BootstrapModule,
-        RecipesModule,
+
         ShoppingListModule,
         HttpModule,
-        // NgArrayPipesModule,
 
+        //WildcardRoute
+        SharedModule,
+        AppRoutingModule,
     ],
     providers: [
         ShoppingListService,
@@ -54,7 +57,11 @@ import {DataStorageService} from "./shared/services/data-storage.service";
 
 })
 export class AppModule {
-    // constructor(router: Router) {
-    //     console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
-    // }
+    constructor(router: Router) {
+       // console.log('Routes: ', router.config);
+        let routes=router.config
+        for(let route of routes){
+            console.log(route['path'])
+        }
+    }
 }

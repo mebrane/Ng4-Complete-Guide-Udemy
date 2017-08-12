@@ -18,7 +18,7 @@ import {RouterModule} from "@angular/router";
     ],
     exports: [
         FooterComponent,
-        NavbarComponent,//
+        NavbarComponent,
     ],
     providers:[]
 })

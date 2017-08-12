@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {DataModel} from "../data.model";
+import {DataModel} from "../models/data.model";
 
 @Component({
   selector: 'app-messages',

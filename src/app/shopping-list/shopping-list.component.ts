@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Ingredient} from "../shared/ingredient.model";
 import {ShoppingListService} from "./shopping-list.service";
 import {Response} from "@angular/http";
+import {Ingredient} from "../shared/models/ingredient.model";
 
 @Component({
     selector: 'app-shopping-list',
