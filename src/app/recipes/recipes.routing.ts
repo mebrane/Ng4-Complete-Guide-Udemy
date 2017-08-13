@@ -1,9 +1,9 @@
-import {RouterModule, Routes} from "@angular/router";
-import {AuthGuardService} from "../auth/auth-guard.service";
-import {RecipesComponent} from "./recipes.component";
-import {MessagesComponent} from "../shared/messages/messages.component";
-import {RecipeForm2Component} from "./recipe-form2/recipe-form2.component";
-import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
+import { AuthGuardService } from '../auth/auth-guard.service';
+import { MessagesComponent } from '../shared/messages/messages.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { RecipeForm2Component } from './recipe-form2/recipe-form2.component';
+import { RecipesComponent } from './recipes.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
@@ -19,27 +19,27 @@ const routes: Routes = [
                 component: MessagesComponent,
                 data: {
                     type: 'info',
-                    message: "Select a Recipe"
+                    message: 'Select a Recipe'
                 }
             },
             {
                 path: 'new-recipe',
                 component: RecipeForm2Component,
                 data: {
-                    name: "recipes.new"
+                    name: 'recipes.new'
                 }
             },
             {
                 path: ':id',
                 component: RecipeDetailComponent,
                 data: {
-                    name: "recipes.detail"
+                    name: 'recipes.detail'
                 }
             }, {
                 path: ':id/edit',
                 component: RecipeForm2Component,
                 data: {
-                    name: "recipes.edit"
+                    name: 'recipes.edit'
                 }
             },
         ]

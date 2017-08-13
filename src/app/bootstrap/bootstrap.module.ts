@@ -1,18 +1,18 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {BootstrapComponent} from './bootstrap.component';
-import {Datepicker1Component} from "./datepicker/datepicker1/datepicker1.component";
-import {DatepickerModule} from 'ngx-bootstrap/datepicker';
-import {FormsModule} from "@angular/forms";
-import {ModalModule} from "ngx-bootstrap";
-
-import {BsModalRef} from "ngx-bootstrap/modal";
-import { ModalParentComponent } from './modal/modal-parent/modal-parent.component';
+import { BootstrapComponent } from './bootstrap.component';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { CommonModule } from '@angular/common';
+import { Datepicker1Component } from './datepicker/datepicker1/datepicker1.component';
+import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FormsModule } from '@angular/forms';
+import { ModalDirOptComponent } from './modal/modal-dir-opt/modal-dir-opt.component';
+import { ModalDirParentComponent } from './modal/modal-dir-parent/modal-dir-parent.component';
+import { ModalModule } from 'ngx-bootstrap';
 import { ModalOptionsComponent } from './modal/modal-options/modal-options.component';
+import { ModalParentComponent } from './modal/modal-parent/modal-parent.component';
 import { ModalTemplateOptionsComponent } from './modal/modal-template-options/modal-template-options.component';
 import { ModalTemplateParentComponent } from './modal/modal-template-parent/modal-template-parent.component';
-import { ModalDirParentComponent } from './modal/modal-dir-parent/modal-dir-parent.component';
-import { ModalDirOptComponent } from './modal/modal-dir-opt/modal-dir-opt.component';
+import { NgModule } from '@angular/core';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -31,12 +31,12 @@ import { ModalDirOptComponent } from './modal/modal-dir-opt/modal-dir-opt.compon
         ModalDirOptComponent,
 
     ],
-    exports:[
+    exports: [
         BootstrapComponent,
         // ComponentModalComponentComponent
     ],
-    providers:[BsModalRef],
-    entryComponents:[ModalDirOptComponent]
+    providers: [BsModalRef],
+    entryComponents: [ModalDirOptComponent]
 })
 export class BootstrapModule {
 }

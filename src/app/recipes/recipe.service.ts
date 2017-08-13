@@ -1,7 +1,7 @@
-import {Injectable,} from '@angular/core';
-import {Recipe} from "./recipe.model";
-import {Ingredient} from "../shared/models/ingredient.model";
-import {Subject} from "rxjs/Subject";
+import { Ingredient } from '../shared/models/ingredient.model';
+import { Injectable } from '@angular/core';
+import { Recipe } from './recipe.model';
+import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class RecipeService {
 
@@ -63,31 +63,31 @@ export class RecipeService {
 
     getRecipe(id: number): Recipe {
         return this.recipes.find(
-            (r: Recipe) => r.id == id
+            (r: Recipe) => r.id === id
         )
     }
 
     createRecipe(recipe: Recipe): number {
-        let length = this.recipes.length
-        let lastRecipe = this.recipes[length - 1]
+        const length = this.recipes.length
+        const lastRecipe = this.recipes[length - 1]
         recipe.id = lastRecipe.id + 1
         this.recipes.push(recipe)
-        //console.log("new Recipe",recipe)
+        // console.log("new Recipe",recipe)
         this.onRecipeListUpdated()
         return recipe.id
     }
 
     updateRecipe(id: number, recipe: Recipe) {
 
-        let index = this.recipes.findIndex(
-            (r: Recipe) => r.id == id
+        const index = this.recipes.findIndex(
+            (r: Recipe) => r.id === id
         )
-        //let _recipe=this.getRecipe(id)
+        // let _recipe=this.getRecipe(id)
 
         if (index > -1) {
             recipe.id = id
             this.recipes[index] = recipe;
-            console.log("recipe Updated", index, recipe)
+            console.log('recipe Updated', index, recipe)
         } else {
             console.log(`Recipe id:${id} index:${index} not found`)
         }
@@ -99,13 +99,13 @@ export class RecipeService {
     }
 
     deleteRecipe(id: number) {
-        let index = this.recipes.findIndex(
-            (r: Recipe) => r.id == id
+        const index = this.recipes.findIndex(
+            (r: Recipe) => r.id === id
         )
         if (index > -1) {
             this.recipes.splice(index, 1)
         } else {
-            console.log("Recipe not found")
+            console.log('Recipe not found')
         }
 
         this.onRecipeListUpdated()

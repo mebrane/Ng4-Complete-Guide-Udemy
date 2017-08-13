@@ -1,56 +1,52 @@
-import {Injectable, EventEmitter} from '@angular/core';
-import {Router, ActivatedRoute,} from "@angular/router";
-import {Location} from "@angular/common";
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Injectable()
 export class AuthService {
 
-    private auth: boolean = false;
-    authEvent = new EventEmitter<boolean>();
+    private auth = false;
+    authEvent = new EventEmitter < boolean > ();
     private timeWait = 1;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                private location: Location,) {
+                private location: Location, ) {
 
         this.authEvent.subscribe(
-            (auth: boolean) => {
+            (auth: boolean) =>  {
                 this.auth = auth;
-                //this.checkAuth()
-                if (!auth) {
+                // this.checkAuth()
+                if ( ! auth) {
                     this.redirectIfNotAuth()
                 }
-            }
-        )
+            })
     }
 
-    isAuthenticated(): Promise<boolean> {
+    isAuthenticated(): Promise < boolean >  {
         return new Promise(
-            (resolve, reject) => {
+            (resolve, reject) =>  {
                 setTimeout(
-                    () => {
+                    () =>  {
                         this.authEvent.emit(this.auth)
                         resolve(this.auth)
                     },
-                    this.timeWait
-                )
+                    this.timeWait)
 
-            }
-        )
+            })
     }
 
     login() {
-        setTimeout(() => {
-                //this.authEvent.emit(true)
+        setTimeout(() =>  {
+                // this.authEvent.emit(true)
                 this.auth = true;
                 this.redirectAfterLogin()
-            }, this.timeWait
-        )
+            }, this.timeWait)
     }
 
     redirectAfterLogin() {
         this.router.navigate([
-            this.route.snapshot.queryParams["returnUrl"] || "/"
+            this.route.snapshot.queryParams['returnUrl'] || '/'
         ])
     }
 
@@ -60,15 +56,13 @@ export class AuthService {
 
     redirectIfNotAuth() {
         let returnUrl: string;
-        let route = this.router.parseUrl(this.location.path())
-        let queryParams = route.queryParams
+        const route = this.router.parseUrl(this.location.path())
+        const queryParams = route.queryParams
         /*
          Si el path tiene un return Url lo vuelve a asignar
          Si el path no tiene un return Url, asigna el path completo
          */
-        returnUrl = ("returnUrl" in queryParams)
-            ? queryParams["returnUrl"]
-            : this.location.path()
+        returnUrl = ('returnUrl' in queryParams) ? queryParams['returnUrl'] : this.location.path()
 
         /*Testing Routes*/
         //        let date = new Date()
@@ -78,7 +72,7 @@ export class AuthService {
         // queryParams ${dateStr} - ${JSON.stringify(queryParams)}
         // returnUrl ${dateStr} - ${returnUrl}`
         //        )
-        this.router.navigate(["/login"], {
+        this.router.navigate(['/login'],  {
             queryParams: {
                 returnUrl: returnUrl
             },

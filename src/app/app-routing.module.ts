@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes, PreloadAllModules} from "@angular/router";
-import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
-import {PageNotFoundComponent} from "./shared/pages/page-not-found/page-not-found.component";
-import {AuthComponent} from "./auth/auth/auth.component";
-import {AuthGuardService} from "./auth/auth-guard.service";
-import {TestingComponent} from "./shared/testing/testing.component";
-import {HomeComponent} from "./home/home.component";
+import { AuthComponent } from './auth/auth/auth.component';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { HomeComponent } from './home/home.component';
+import { NgModule } from '@angular/core';
+import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { TestingComponent } from './shared/testing/testing.component';
 
 const appRoutes: Routes = [
     // {
@@ -15,17 +15,17 @@ const appRoutes: Routes = [
     // },
     {
         path: '',
-        component:HomeComponent,
+        component: HomeComponent,
         // pathMatch: 'full'
-        canActivate:[AuthGuardService],
+        canActivate: [AuthGuardService],
     },
     {
-      path: "recipes",
-        loadChildren:"./recipes/recipes.module#RecipesModule",
+      path: 'recipes',
+        loadChildren: './recipes/recipes.module#RecipesModule',
         canLoad: [AuthGuardService],
     },
     {
-        path:'testing',
+        path: 'testing',
         component: TestingComponent,
     },
      {path: '**', component: PageNotFoundComponent}

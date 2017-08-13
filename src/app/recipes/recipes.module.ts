@@ -1,16 +1,16 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RecipesComponent} from "./recipes.component";
-import {RecipeListComponent} from "./recipe-list/recipe-list.component";
-import {RecipeItemComponent} from "./recipe-list/recipe-item/recipe-item.component";
-import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
-import {BsDropdownModule} from "ngx-bootstrap";
-import {RecipeService} from "./recipe.service";
-import {SharedModule} from "../shared/shared.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RecipeForm2Component} from './recipe-form2/recipe-form2.component';
-import {NgArrayPipesModule} from "ngx-pipes";
-import {RecipesRouting} from "./recipes.routing";
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgArrayPipesModule } from 'ngx-pipes';
+import { NgModule } from '@angular/core';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { RecipeForm2Component } from './recipe-form2/recipe-form2.component';
+import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipesComponent } from './recipes.component';
+import { RecipeService } from './recipe.service';
+import { RecipesRouting } from './recipes.routing';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
@@ -33,7 +33,7 @@ import {RecipesRouting} from "./recipes.routing";
     ],
     exports: [],
     providers: [
-        //RecipeService
+        // RecipeService
     ]
 })
 export class RecipesModule {

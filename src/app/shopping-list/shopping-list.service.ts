@@ -1,10 +1,10 @@
-import {Injectable, EventEmitter,} from '@angular/core'
-import {Ingredient} from "../shared/models/ingredient.model"
-import {Subject} from "rxjs/Subject";
-import {Http, Response} from "@angular/http";
-import {ResourceService} from "../shared/services/resource.service";
+import { Http, Response } from '@angular/http';
+import { Ingredient } from '../shared/models/ingredient.model';
+import { Observable } from 'rxjs/Observable';
+import { ResourceService } from '../shared/services/resource.service';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/Rx';
-import {Observable} from "rxjs";
+import {Injectable, EventEmitter, } from '@angular/core'
 
 @Injectable()
 export class ShoppingListService {
@@ -36,7 +36,7 @@ export class ShoppingListService {
         ),
     ];
 
-    constructor(private http: Http,) {
+    constructor(private http: Http, ) {
     }
 
     getIngredients() {
@@ -63,7 +63,7 @@ export class ShoppingListService {
     }
 
     updateIngredient(index: number, ingredient: Ingredient) {
-        //console.log(index, ingredient)
+        // console.log(index, ingredient)
         this.ingredients[index] = ingredient
         this.updateIngredientsList()
     }

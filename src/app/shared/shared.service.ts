@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SharedService {
@@ -7,25 +7,29 @@ export class SharedService {
     }
 
     randStr(): string {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";//
+        let text = '';
+        const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; //
 
-        for (var i = 0; i < 5; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        for (let i = 0; i < 5; i++){
+text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
 
         return text;
     }
 
     randStrWithNum(): string {
-        var text = "";
-        var possible =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        let text = '';
+        const possible =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
                 .split('')
                 .sort(() => 0.5 - Math.random())
                 .join('')
 
-        for (var i = 0; i < 50; i++)
+        for (let i = 0; i < 50; i++) {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
 
         return text;
     }
